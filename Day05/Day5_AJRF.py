@@ -36,3 +36,25 @@ assert not(is_nice("dvszwmarrgswjxmb"))
 
 # Count nice lines
 np.sum([is_nice(line) for line in input])
+
+# Part 2 ---------
+import regex
+def is_nice_2(x):
+
+    r = re.search(r"(..).*\1", x)
+    repeating_pair = not(r == None)
+
+    r = re.search(r"(.).\1", x)
+    repeating_with_one_space = not(r == None)
+
+    return repeating_with_one_space and repeating_pair
+
+# Test 
+assert is_nice_2("aaaa")
+assert is_nice_2("qjhvhtzxzqqjkmpb")
+assert is_nice_2("xxyxx")
+assert not(is_nice_2("uurcxstgmygtbstg"))
+assert not(is_nice_2("ieodomkazucvgmuy"))
+
+# And count
+np.sum([is_nice_2(line) for line in input])
